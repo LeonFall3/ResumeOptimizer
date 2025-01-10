@@ -1,6 +1,4 @@
-# from IPython.display import display, Markdown
 from openai import OpenAI
-
 from markdown import markdown
 from weasyprint.text.ffi import FROM_UNITS
 from weasyprint import HTML
