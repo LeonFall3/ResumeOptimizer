@@ -163,5 +163,4 @@ cython_debug/
 
 .DS_Store
 output.pdf
-templates\resume_new.md
-templates\resume.md
+templates\
