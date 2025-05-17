@@ -1,0 +1,9 @@
+streamlit
+llamaapi
+python-docx
+pypdf2
+python-dotenv
+openai
+markdown
+weasyprint
+pdfkit

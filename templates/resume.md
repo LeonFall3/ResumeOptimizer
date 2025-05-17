@@ -45,7 +45,7 @@ In Progress.
 ## Professional Experience
 
 ### Associate Producer, Blackbird Interactive  
-**April 2022 to Novemeber 2023**  
+**April 2020 to Novemeber 2023**  
 - Analyzed project progress and implemented data-driven solutions to enhance efficiency.  
 - Utilized data visualization tools for Gantt charts and milestone tracking.  
 - Identified and addressed project risks and patterns, optimizing workflow.  
@@ -61,3 +61,12 @@ In Progress.
 - Improved performance and mitigated risks.  
 - Provided project teams with data and administrative support.  
 - Ensured efficient task execution aligned with objectives.
+
+### Production Coordinator | Hololabs Studio
+**Febuary 2025 to current**
+- Provided high-level administrative and operational support to studio leadership, managing complex calendars, scheduling meetings, and triaging priorities.
+- Coordinated national and international travel logistics for leadership and team members attending events, conferences, or business trips.
+- Acted as a communication liaison between executives, internal teams, and external partners.
+- Scheduled and facilitated meetings, prepared agendas and materials, and tracked follow-up action items to ensure accountability and progress.
+- Planned and executed studio events handling logistics, scheduling, and promotional content.
+- Took on ad hoc leadership support tasks, responding flexibly to special requests and unique project needs.

@@ -1,61 +1,63 @@
-# Alex Sharp
+# Alex Sharp  
 **He/They**  
 alexleonsharp@gmail.com  
 250-320-2873  
 Victoria, Canada  
-[LinkedIn](https://linkedin.com/in/alex-sharp) | [GitHub](https://github.com/LeonFall3)
+[LinkedIn](https://linkedin.com/in/alex-sharp)  
 
 ---
 
-## Profile
-
-Detail-oriented Data Specialist with a background in gaming and experience in data analysis, machine learning, and project management. Proficient in SQL and Python, with a strong ability to translate data insights into actionable business strategies.
-
----
-
-## Skills
-
-- **Programming Languages:** SQL, Python
-- **Data Analysis:** Pandas, NumPy, Scikit-learn
-- **Machine Learning:** Predictive Modeling, TensorFlow, PyTorch
-- **Data Visualization:** Matplotlib, Tableau
-- **Other Skills:** Data Cleaning, Exploratory Data Analysis, Workflow Optimization, Risk Analysis, Communication, Team Collaboration
+## Profile  
+Outgoing and personable professional with extensive experience in administrative support, operations, and team leadership within dynamic environments. Proven ability to build and maintain professional relationships, ensuring client-centered care and efficient workflow. Strong communicator with a commitment to fostering inclusive workplaces and optimizing organizational processes.
 
 ---
 
-## Professional Experience
+## Skills  
 
-### Associate Producer, Blackbird Interactive  
-**April 2022 to November 2023**  
-- Developed and implemented data-driven solutions, improving project efficiency by 20%.  
-- Conducted exploratory data analysis to identify project risks and optimize workflows.  
-- Collaborated with cross-functional teams to enhance decision-making through effective data visualization.
+- **Administrative Support**: Client appointment management, billing, documentation, scheduling, report preparation
+- **Communication**: Exceptional verbal and written skills, relationship building, teamwork, mentorship
+- **Operations & Logistics**: Workflow optimization, time management, organization, task coordination
+- **Technical Proficiency**: Microsoft Word, Excel, Google Suite, basic mechanical troubleshooting
+- **Diversity & Inclusion Leadership**: Initiatives promoting equity and inclusion in the workplace
 
-### Assistant Producer, Electronic Arts  
+---
+
+## Professional Experience  
+
+### Associate Producer | Blackbird Interactive  
+**April 2020 to November 2023**  
+- Managed project schedules and organized documentation to ensure smooth operations, enhancing team productivity by 20%.
+- Fostered strong professional relationships by mentoring new team members and leading diversity initiatives, creating an inclusive workplace culture.
+- Streamlined administrative processes, improving task coordination and execution efficiency.
+
+### Assistant Producer | Electronic Arts  
 **April 2019 to April 2020**  
-- Compiled and analyzed bi-weekly status reports, identifying trends that led to a 15% improvement in project delivery times.  
-- Monitored project metrics and proposed data-driven solutions, enhancing operational performance.  
-- Supported teams with data cleaning and organizational tasks, ensuring data accuracy for project analysis.
+- Provided comprehensive administrative support, including scheduling and documentation, contributing to improved operational workflows.
+- Assisted in compiling reports for leadership, enhancing communication and project visibility across teams.
+- Collaborated with cross-functional teams to drive processes aimed at increasing efficiency and inclusion.
+
+### Chair, Diversity & Inclusion Committee | Blackbird Interactive  
+**2021 to 2023**  
+- Founded and led initiatives to promote workplace inclusivity, organizing training sessions and events that increased employee engagement in D&I efforts.
+- Advocated for diverse hiring practices and employee support programs, fostering a culture of equity and respect.
 
 ---
 
-## Education
+## Education  
 
-### Data Science Diploma, Lighthouse Labs  
-2024
+### Data Science Diploma | Lighthouse Labs  
+**2024**  
 
-### Game Design Diploma (Focus in Project Management), Vancouver Film School  
-2017 to 2018
-
----
-
-## Projects
-
-### Breast Cancer Diagnosis from Imaging Data  
-- Engaged in data cleaning and preprocessing of imaging datasets to support predictive modeling efforts.
-
-### Personal LP Database Updater  
-- Currently developing a tool to automate data updates and reporting for personal music collections.
+### Game Design Diploma (Focus in Project Management) | Vancouver Film School  
+**2017 to 2018**  
 
 ---
 
+## Additional Information  
+- Available for afternoon/evening shifts and weekends as required.
+- Open to roles requiring strong problem-solving skills in administrative, operations, or healthcare settings.
+- References available upon request.
+
+---
+
+## 
