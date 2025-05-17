@@ -164,3 +164,8 @@ cython_debug/
 .DS_Store
 output.pdf
 templates/
+
+AlexSharp-CoverLetter.pdf
+AlexSharp-Resume.pdf
+templates/resume_new.md
+templates/resume.md
