@@ -5,7 +5,7 @@ alexleonsharp@gmail.com
 Victoria, Canada  
 [LinkedIn](https://linkedin.com/in/alex-sharp)  
 
-May 17, 2025  
+[DATE]  
 
 Dear Hiring Manager,
 

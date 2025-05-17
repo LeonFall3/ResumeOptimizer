@@ -166,3 +166,5 @@ output.pdf
 AlexSharp-CoverLetter.pdf
 AlexSharp-Resume.pdf
 
+templates/resume.md
+templates/resume_new.md

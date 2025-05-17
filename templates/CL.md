@@ -5,8 +5,7 @@ alexleonsharp@gmail.com
 Victoria, Canada  
 [LinkedIn](https://linkedin.com/in/alex-sharp) | [GitHub](https://github.com/LeonFall3)
 
-
----
+[DATE]
 
 Dear Hiring Manager,  
 
