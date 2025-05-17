@@ -1,7 +1,6 @@
 # Alex Sharp
 **He/They**  
-alexleonsharp@gmail.com  
-250-320-2873  
+alexleonsharp@gmail.com   
 Victoria, Canada  
 [LinkedIn](https://linkedin.com/in/alex-sharp) | [GitHub](https://github.com/LeonFall3)
 

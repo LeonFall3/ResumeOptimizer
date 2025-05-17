@@ -1,7 +1,6 @@
 # Alex Sharp  
 **He/They**  
 alexleonsharp@gmail.com  
-250-320-2873  
 Victoria, Canada  
 [LinkedIn](https://linkedin.com/in/alex-sharp)  
 
