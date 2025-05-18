@@ -13,6 +13,15 @@ Dynamic project manager with extensive experience in software development and a 
 
 ## Experience  
 
+### Production Coordinator | Hololabs Studio
+**Febuary 2025 to current**
+- Provided high-level administrative and operational support to studio leadership, managing complex calendars, scheduling meetings, and triaging priorities.
+- Coordinated national and international travel logistics for leadership and team members attending events, conferences, or business trips.
+- Acted as a communication liaison between executives, internal teams, and external partners.
+- Scheduled and facilitated meetings, prepared agendas and materials, and tracked follow-up action items to ensure accountability and progress.
+- Planned and executed studio events handling logistics, scheduling, and promotional content.
+- Took on ad hoc leadership support tasks, responding flexibly to special requests and unique project needs.
+
 ### Blackbird Interactive, Remote/Vancouver, BC | Associate Producer  
 **April 2020 - August 2023**  
 - Led project management efforts across multiple teams, utilizing Agile principles to maintain project momentum and ensure timely delivery of milestones.  
@@ -25,15 +34,6 @@ Dynamic project manager with extensive experience in software development and a 
 - Supported project management for a team of over 200, streamlining communication and task oversight through the use of Agile tools like JIRA.  
 - Assisted in breaking down product requirements into manageable backlog items, ensuring clear visibility and prioritization of tasks.  
 - Actively contributed to diversity and inclusion initiatives, enhancing employee engagement and fostering a collaborative culture.  
-
-### Production Coordinator | Hololabs Studio
-**Febuary 2025 to current**
-- Provided high-level administrative and operational support to studio leadership, managing complex calendars, scheduling meetings, and triaging priorities.
-- Coordinated national and international travel logistics for leadership and team members attending events, conferences, or business trips.
-- Acted as a communication liaison between executives, internal teams, and external partners.
-- Scheduled and facilitated meetings, prepared agendas and materials, and tracked follow-up action items to ensure accountability and progress.
-- Planned and executed studio events handling logistics, scheduling, and promotional content.
-- Took on ad hoc leadership support tasks, responding flexibly to special requests and unique project needs.
 
 ---
 

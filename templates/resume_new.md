@@ -1,49 +1,61 @@
 # Alex Sharp  
 **He/They**  
 alexleonsharp@gmail.com  
+250-320-2873  
 Victoria, Canada  
 [LinkedIn](https://linkedin.com/in/alex-sharp)  
 
 ---
 
 ## Profile  
-Outgoing and personable professional with extensive experience in administrative support, operations, and team leadership within dynamic environments. Proven ability to build and maintain professional relationships, ensuring client-centered care and efficient workflow. Strong communicator with a commitment to fostering inclusive workplaces and optimizing organizational processes.
+Detail-oriented professional with over 4 years of experience in administrative support and project coordination, coupled with a strong background in operations and customer service. Proven ability to manage multiple tasks in high-volume environments while maintaining a commitment to efficiency and organization. Passionate about fostering inclusive workplaces and delivering exceptional service.
 
 ---
 
 ## Skills  
-
-- **Administrative Support**: Client appointment management, billing, documentation, scheduling, report preparation
-- **Communication**: Exceptional verbal and written skills, relationship building, teamwork, mentorship
-- **Operations & Logistics**: Workflow optimization, time management, organization, task coordination
-- **Technical Proficiency**: Microsoft Word, Excel, Google Suite, basic mechanical troubleshooting
-- **Diversity & Inclusion Leadership**: Initiatives promoting equity and inclusion in the workplace
+- **Customer Service & Support:** First contact support, incident management, service ticket prioritization  
+- **Operational Excellence:** Workflow optimization, milestone tracking, inventory management  
+- **Technical Proficiency:** Familiarity with tracking software and Microsoft Office/Google Suite  
+- **Communication:** Strong verbal and written communication skills, adept at liaising with diverse teams  
+- **Diversity & Inclusion:** Leadership in initiatives promoting an equitable work environment  
 
 ---
 
 ## Professional Experience  
 
+### Production Coordinator | Hololabs Studio  
+**February 2025 to present**  
+- Provided comprehensive administrative support, managing complex scheduling and prioritizing service requests to enhance operational efficiency.  
+- Acted as the primary communication liaison, ensuring prompt resolution of inquiries and seamless collaboration between executives and team members.  
+- Coordinated logistics for national and international travel, optimizing processes for time-sensitive events and meetings.  
+
 ### Associate Producer | Blackbird Interactive  
 **April 2020 to November 2023**  
-- Managed project schedules and organized documentation to ensure smooth operations, enhancing team productivity by 20%.
-- Fostered strong professional relationships by mentoring new team members and leading diversity initiatives, creating an inclusive workplace culture.
-- Streamlined administrative processes, improving task coordination and execution efficiency.
+- Streamlined project operations by organizing schedules and maintaining detailed documentation, resulting in improved workflow efficiency.  
+- Delivered exceptional administrative support, assisting in the resolution of team inquiries and ensuring timely execution of project milestones.  
+- Led diversity and inclusion initiatives, fostering a supportive and equitable workplace culture.  
 
 ### Assistant Producer | Electronic Arts  
 **April 2019 to April 2020**  
-- Provided comprehensive administrative support, including scheduling and documentation, contributing to improved operational workflows.
-- Assisted in compiling reports for leadership, enhancing communication and project visibility across teams.
-- Collaborated with cross-functional teams to drive processes aimed at increasing efficiency and inclusion.
+- Monitored and prioritized project tasks, enhancing operational workflows and ensuring timely completion of deliverables.  
+- Provided high-level support through effective documentation and reporting for leadership teams, contributing to informed decision-making.  
+- Contributed to the development of an inclusive environment by mentoring team members and promoting best practices in workplace equity.  
+
+---
+
+## Volunteer  
 
 ### Chair, Diversity & Inclusion Committee | Blackbird Interactive  
 **2021 to 2023**  
-- Founded and led initiatives to promote workplace inclusivity, organizing training sessions and events that increased employee engagement in D&I efforts.
-- Advocated for diverse hiring practices and employee support programs, fostering a culture of equity and respect.
+- Founded and led initiatives to foster inclusivity, organizing events and training sessions focused on equitable workplace practices.  
+
+### Local Leadership, PRIDE Employee Resource Group | Electronic Arts  
+**2019 to 2020**  
+- Supported LGBTQ+ initiatives, enhancing employee engagement through advocacy and awareness events.  
 
 ---
 
 ## Education  
-
 ### Data Science Diploma | Lighthouse Labs  
 **2024**  
 
@@ -53,9 +65,8 @@ Outgoing and personable professional with extensive experience in administrative
 ---
 
 ## Additional Information  
-- Available for afternoon/evening shifts and weekends as required.
-- Open to roles requiring strong problem-solving skills in administrative, operations, or healthcare settings.
-- References available upon request.
+- Open to roles in customer service, operations, and administration.  
+- References available upon request.  
 
 ---
 
