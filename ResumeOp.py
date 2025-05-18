@@ -15,7 +15,11 @@ def PDFcreator(html_content,response_list,type):
       filename = 'Resume'
    if type == 'cover':
       filename = 'CoverLetter'
+   else:
+      print('Invalid type selected')
+
    # Convert HTML to PDF
+   print(f'filename Variable: {filename}')
    pdfkit.from_string(html_content, 'AlexSharp-'+filename+'.pdf', configuration=config)
 
    # save as markdown
@@ -52,7 +56,7 @@ You are a professional resume optimization expert specializing in tailoring resu
 1. **Relevance**:  
    - Prioritize experiences, skills, and achievements **most relevant to the job description**.  
    - Remove or de-emphasize irrelevant details to ensure a **concise** and **targeted** resume.
-   - Limit work experience section to 2-3 most relevant roles
+   - Limit work experience section to 2-3 most relevant roles and is is ordered by **most recent** to **least recent**.
    - Limit bullet points under each role to 2-3 most relevant impacts
 
 2. **Action-Driven Results**:  
