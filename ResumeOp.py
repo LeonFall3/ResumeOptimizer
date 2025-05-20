@@ -11,44 +11,96 @@ path_to_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
 
 def PDFcreator(html_content,response_list,type):
-   if type == 'resume':
-      filename = 'Resume'
    if type == 'cover':
-      filename = 'CoverLetter'
+      filename = 'coverletter'
    else:
-      print('Invalid type selected')
-      return
+      filename = 'resume'
 
+
+   print(f"type: {type}")
    # Convert HTML to PDF
-   print(f'filename Variable: {filename}')
    options = {'encoding': 'UTF-8' }
    pdfkit.from_string(html_content, f'AlexSharp-{filename}.pdf', configuration=config, options=options)
+
+   print(f"PDF created successfully: {filename}.pdf")
+   print(f"md output {filename}.md")
 
    output_file = f"templates/{filename}_new.md"
    with open(output_file, "w", encoding="utf-8") as file:
       file.write(response_list[0])
 
 
+   # Import the necessary module
+from dotenv import load_dotenv
+import os
+
+   # Load environment variables from the .env file (if present)
+load_dotenv()
+
+   # Access environment variables as if they came from the actual environment
+api_key = os.getenv('OPENAI_API_KEY')
+from datetime import date
+date = date.today()
+
+def RunPrompt(prompt, api_key, type):
+   print(f"Running prompt for {type}")
+   if type == 'resume':
+      filename = 'Resume'
+   if type == 'cover':
+      filename = 'CoverLetter'
+   # setup api client
+   client = OpenAI(api_key=api_key)
+
+   # make api call
+   response = client.chat.completions.create(
+      model="gpt-4o-mini",
+      messages=[
+         {"role": "system", "content": "Expert resume writer"},
+         {"role": "user", "content": prompt}
+      ], 
+      temperature = 0.7
+   )
+
+   # extract response
+   response_string = response.choices[0].message.content
+
+   # separate new resume from improvement suggestions
+   response_list = response_string.split("Additional Suggestions")
+
+   
+
+   # save as PDF
+   output_pdf_file = "templates/"+filename+"_new.pdf"
+
+   # Convert Markdown to HTML
+   html_content = markdown(response_list[0])
+
+   return html_content, response_list
+
 
 print('Select resume template: ')
-print('Data, PM, Gen')
+print('data, pm, gen')
 tempSelection = input().lower()
 if tempSelection == 'data':
-   tempSelection = 'resume'
+   tempSelection = 'data_resume'
 elif tempSelection == 'pm':
-   tempSelection = 'PM_resume'
+   tempSelection = 'pm_resume'
 else:
-   tempSelection = 'Gen_resume'
+   tempSelection = 'gen_resume'
    
+
 # Open and read the Markdown file
 with open(f"templates/{tempSelection}.md", "r", encoding="utf-8") as file:
    resume_string = file.read()
-
+print('Resume template selected: ' + tempSelection)
+print(f"templates/{tempSelection}.md")
 # input job description
 print("Enter the job description:")
 jd_string = input()  
 
 
+# Resume optimization
+print('Resume optimization starting')
 RES_prompt_template = lambda resume_string, jd_string : f"""
 You are a professional resume optimization expert specializing in tailoring resumes to specific job descriptions. Your goal is to optimize my resume and provide actionable suggestions for improvement to align with the target role.
 
@@ -99,65 +151,18 @@ You are a professional resume optimization expert specializing in tailoring resu
    - Recommend **certifications or courses** to pursue.  
    - Suggest **specific projects or experiences** to develop.
 """
-
-
 RES_prompt = RES_prompt_template(resume_string, jd_string)
-
-
-   # Import the necessary module
-from dotenv import load_dotenv
-import os
-
-   # Load environment variables from the .env file (if present)
-load_dotenv()
-
-   # Access environment variables as if they came from the actual environment
-api_key = os.getenv('OPENAI_API_KEY')
-from datetime import date
-date = date.today()
-
-def RunPrompt(prompt, api_key, type):
-   if type == 'resume':
-      filename = 'Resume'
-   if type == 'cover':
-      filename = 'CoverLetter'
-   # setup api client
-   client = OpenAI(api_key=api_key)
-
-   # make api call
-   response = client.chat.completions.create(
-      model="gpt-4o-mini",
-      messages=[
-         {"role": "system", "content": "Expert resume writer"},
-         {"role": "user", "content": prompt}
-      ], 
-      temperature = 0.7
-   )
-
-   # extract response
-   response_string = response.choices[0].message.content
-
-   # separate new resume from improvement suggestions
-   response_list = response_string.split("Additional Suggestions")
-
-   
-
-   # save as PDF
-   output_pdf_file = "templates/"+filename+"_new.pdf"
-
-   # Convert Markdown to HTML
-   html_content = markdown(response_list[0])
-
-   return html_content, response_list
-
 res_html_contet, res_response_list = RunPrompt(RES_prompt, api_key, 'resume')
-
+print("Resume prompt ran")
+with open(f"templates/resume_new.md", "r", encoding="utf-8") as file:
+   resume_string = file.read()
+# print(f"resume string: {resume_string}")
 PDFcreator(res_html_contet,res_response_list,'resume')
 print('Resume optimization completed successfully!')
 
-with open(f"templates/resume_new.md", "r", encoding="utf-8") as file:
-   resume_string = file.read()
 
+# Cover letter generation
+print('Cover Letter optimization starting')
 CL_prompt_template = lambda resume_string, jd_string : f"""
 You are a professional cover letter writter expert specializing in tailoring cover letters to specific job descriptions based on a given resume. Your goal is to create my cover letter and provide actionable suggestions for improvement to align with the target role.
 
@@ -206,8 +211,10 @@ Ensure the tone is professional yet engaging, and keep the letter concise (ideal
 """
 CL_prompt = CL_prompt_template(resume_string, jd_string)
 cl_html_contet, cl_response_list = RunPrompt(CL_prompt, api_key, 'cover')
-
+print("Cover Letter prompt ran")
+with open(f"templates/coverletter_new.md", "r", encoding="utf-8") as file:
+   resume_string = file.read()
+# print(f"Cover Letter string: {resume_string}")
 PDFcreator(cl_html_contet,cl_response_list,'cover')
-
 print("Cover Letter creation completed successfully!")
 
