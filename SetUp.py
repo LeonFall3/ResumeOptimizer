@@ -1,21 +1,3 @@
-import sys
-import subprocess
-
-def install_and_import(package):
-    try:
-        __import__(package)
-    except ImportError:
-        print(f"Installing {package}...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-
-# List your required packages here
-required_packages = ["markdown", "weasyprint", "openai", "python-dotenv", "pdfkit"]
-
-for pkg in required_packages:
-    # Some packages have different import names than pip names
-    import_name = pkg.replace("-", "_")
-    install_and_import(import_name)
-
 
 import os
 import json
