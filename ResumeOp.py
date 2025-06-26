@@ -1,7 +1,7 @@
 from openai import OpenAI
 from markdown import markdown
 from weasyprint.text.ffi import FROM_UNITS
-from weasyprint import HTML
+#from weasyprint import HTML
 
 
 import pdfkit
@@ -25,9 +25,6 @@ options = {'encoding': 'UTF-8' }
 if user == '':
    print("Please run SetUp.py first to set up your user information.")
    exit()
-
-with open(filename,mode) as file:
-   pdfkit.from_file(file, 'generated//output.pdf', configuration=config, options=options)
 
 def PDFcreator(html_content,response_list,type):
    if type == 'cover':
