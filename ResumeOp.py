@@ -1,8 +1,6 @@
 from openai import OpenAI
 from markdown import markdown
 from weasyprint.text.ffi import FROM_UNITS
-#from weasyprint import HTML
-
 
 import pdfkit
 import json
@@ -17,7 +15,7 @@ user = data['user']
 multiple_jobs = data['multiple_jobs']
 job_types = data['job_types']
 
-filename = r'generated\resume_new.md'
+filename = 'generated//resume_new.md'
 mode = 'r'
 options = {'encoding': 'UTF-8' }
 
