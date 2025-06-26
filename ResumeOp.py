@@ -27,7 +27,7 @@ if user == '':
    exit()
 
 with open(filename,mode) as file:
-   pdfkit.from_file(file, r'generated\output.pdf', configuration=config, options=options)
+   pdfkit.from_file(file, 'generated//output.pdf', configuration=config, options=options)
 
 def PDFcreator(html_content,response_list,type):
    if type == 'cover':
@@ -44,7 +44,7 @@ def PDFcreator(html_content,response_list,type):
    print(f"PDF created successfully: {filename}.pdf")
    print(f"md output {filename}.md")
 
-   output_file = f"templates/{filename}_new.md"
+   output_file = f"generated//{filename}_new.md"
    with open(output_file, "w", encoding="utf-8") as file:
       file.write(response_list[0])
 
@@ -86,11 +86,6 @@ def RunPrompt(prompt, api_key, type):
    # separate new resume from improvement suggestions
    response_list = response_string.split("Additional Suggestions")
 
-   
-
-   # save as PDF
-   #output_pdf_file = "templates/"+filename+"_new.pdf"
-
    # Convert Markdown to HTML
    html_content = markdown(response_list[0])
 
@@ -109,7 +104,7 @@ else:
    tempSelection = "resume"
 
 # Open and read the Markdown file
-with open(f"templates/{tempSelection}.md", "r", encoding="utf-8") as file:
+with open(f"templates//{tempSelection}.md", "r", encoding="utf-8") as file:
    resume_string = file.read()
 print("Enter the job description:")
 jd_string = input()  
@@ -170,7 +165,7 @@ You are a professional resume optimization expert specializing in tailoring resu
 RES_prompt = RES_prompt_template(resume_string, jd_string)
 res_html_contet, res_response_list = RunPrompt(RES_prompt, api_key, 'resume')
 print("Resume prompt ran")
-with open(f"generated\resume_new.md", "r", encoding="utf-8") as file:
+with open(f"generated//resume_new.md", "r", encoding="utf-8") as file:
    resume_string = file.read()
 # print(f"resume string: {resume_string}")
 PDFcreator(res_html_contet,res_response_list,'resume')

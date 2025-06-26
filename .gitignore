@@ -167,4 +167,6 @@ AlexSharp-CoverLetter.pdf
 AlexSharp-Resume.pdf
 
 
-temp/
+generated/
+templates/
+
