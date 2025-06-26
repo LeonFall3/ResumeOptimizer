@@ -162,11 +162,12 @@ cython_debug/
 #.idea/
 
 .DS_Store
-output.pdf
-AlexSharp-CoverLetter.pdf
-AlexSharp-Resume.pdf
 
+generated/*
+!generated/.gitkeep
 
-generated/
-templates/
+templates/*
+!templates/.gitkeep
 
+output/*
+!output/.gitkeep
