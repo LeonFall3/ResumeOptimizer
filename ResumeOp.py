@@ -2,13 +2,32 @@ from openai import OpenAI
 from markdown import markdown
 from weasyprint.text.ffi import FROM_UNITS
 from weasyprint import HTML
-import pdfkit
+
 
 import pdfkit
+import json
+
+with open("user_info.json", "r", encoding="utf-8") as f:
+   data = json.load(f)
 
 # Path to the wkhtmltopdf executable
 path_to_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
+user = data['user']
+multiple_jobs = data['multiple_jobs']
+job_types = data['job_types']
+
+filename = r'generated\resume_new.md'
+mode = 'r'
+options = {'encoding': 'UTF-8' }
+
+
+if user == '':
+   print("Please run SetUp.py first to set up your user information.")
+   exit()
+
+with open(filename,mode) as file:
+   pdfkit.from_file(file, r'generated\output.pdf', configuration=config, options=options)
 
 def PDFcreator(html_content,response_list,type):
    if type == 'cover':
@@ -20,7 +39,7 @@ def PDFcreator(html_content,response_list,type):
    print(f"type: {type}")
    # Convert HTML to PDF
    options = {'encoding': 'UTF-8' }
-   pdfkit.from_string(html_content, f'AlexSharp-{filename}.pdf', configuration=config, options=options)
+   pdfkit.from_string(html_content, f'output//{user}-{filename}.pdf', configuration=config, options=options)
 
    print(f"PDF created successfully: {filename}.pdf")
    print(f"md output {filename}.md")
@@ -70,31 +89,28 @@ def RunPrompt(prompt, api_key, type):
    
 
    # save as PDF
-   output_pdf_file = "templates/"+filename+"_new.pdf"
+   #output_pdf_file = "templates/"+filename+"_new.pdf"
 
    # Convert Markdown to HTML
    html_content = markdown(response_list[0])
 
    return html_content, response_list
 
+if multiple_jobs:
+   print('Select resume template')
+   print(f"Available templates: {job_types}")
+   tempSelection = input().lower()
+   for job_type in job_types:
+      if tempSelection == job_type:
+         tempSelection = f"{job_type}_resume"
+         break
 
-print('Select resume template: ')
-print('data, pm, gen')
-tempSelection = input().lower()
-if tempSelection == 'data':
-   tempSelection = 'data_resume'
-elif tempSelection == 'pm':
-   tempSelection = 'pm_resume'
 else:
-   tempSelection = 'gen_resume'
-   
+   tempSelection = "resume"
 
 # Open and read the Markdown file
 with open(f"templates/{tempSelection}.md", "r", encoding="utf-8") as file:
    resume_string = file.read()
-print('Resume template selected: ' + tempSelection)
-print(f"templates/{tempSelection}.md")
-# input job description
 print("Enter the job description:")
 jd_string = input()  
 
@@ -154,7 +170,7 @@ You are a professional resume optimization expert specializing in tailoring resu
 RES_prompt = RES_prompt_template(resume_string, jd_string)
 res_html_contet, res_response_list = RunPrompt(RES_prompt, api_key, 'resume')
 print("Resume prompt ran")
-with open(f"templates/resume_new.md", "r", encoding="utf-8") as file:
+with open(f"generated\resume_new.md", "r", encoding="utf-8") as file:
    resume_string = file.read()
 # print(f"resume string: {resume_string}")
 PDFcreator(res_html_contet,res_response_list,'resume')
@@ -212,7 +228,7 @@ Ensure the tone is professional yet engaging, and keep the letter concise (ideal
 CL_prompt = CL_prompt_template(resume_string, jd_string)
 cl_html_contet, cl_response_list = RunPrompt(CL_prompt, api_key, 'cover')
 print("Cover Letter prompt ran")
-with open(f"templates/coverletter_new.md", "r", encoding="utf-8") as file:
+with open(f"generated//coverletter_new.md", "r", encoding="utf-8") as file:
    resume_string = file.read()
 # print(f"Cover Letter string: {resume_string}")
 PDFcreator(cl_html_contet,cl_response_list,'cover')
