@@ -1,6 +1,27 @@
 import os
 import json
 
+def ensure_file_exists(filepath):
+    if not os.path.exists(filepath):
+        # Create the directory if it doesn't exist
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        # Create an empty file
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write("")
+
+# Before opening resume_new.md
+resume_md_path = f"generated//resume_new.md"
+ensure_file_exists(resume_md_path)
+with open(resume_md_path, "r", encoding="utf-8") as file:
+    resume_string = file.read()
+
+# Before opening coverletter_new.md
+coverletter_md_path = f"generated//coverletter_new.md"
+ensure_file_exists(coverletter_md_path)
+with open(coverletter_md_path, "r", encoding="utf-8") as file:
+    resume_string = file.read()
+
+
 with open("user_info.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
