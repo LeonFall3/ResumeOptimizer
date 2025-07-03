@@ -91,6 +91,9 @@ if multiple_jobs:
    print(f"Available templates: {job_types}")
    tempSelection = input().lower()
    for job_type in job_types:
+      if tempSelection == "gen" or tempSelection == "general":
+         tempSelection = "resume"
+         break
       if tempSelection == job_type:
          tempSelection = f"{job_type}_resume"
          break

@@ -171,3 +171,4 @@ templates/*
 
 output/*
 !output/.gitkeep
+user_info.json

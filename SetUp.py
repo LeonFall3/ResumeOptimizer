@@ -54,7 +54,7 @@ if multiple_jobs:
     print("Do you want to include a general resume template as well? (yes/no)")
     include_general = input().strip().lower() == 'yes'
     if include_general:
-        job_types.append('resume')
+        job_types.append('general')
         print("The general resume template needs to be named 'resume.md'.")
     else:
         print("You will not be using a general resume template.")
