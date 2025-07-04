@@ -10,6 +10,24 @@ def ensure_file_exists(filepath):
         with open(filepath, "w", encoding="utf-8") as f:
             f.write("")
 
+# make and fill use_info.json if it doesn't exist
+user_info_path = "user_info.json"
+default_user_info = {
+    "user": "FirstnameLastname",
+    "multiple_jobs": False,
+    "job_types": ["type1", "type2", "general"]
+}
+
+# Check if user_info.json exists, if not, create it with defaults
+if not os.path.exists(user_info_path):
+    with open(user_info_path, "w", encoding="utf-8") as f:
+        json.dump(default_user_info, f, indent=4)
+    print(f"{user_info_path} created with default values.")
+
+# Now you can safely load user_info.json
+with open(user_info_path, "r", encoding="utf-8") as f:
+    user_info = json.load(f)
+
 # Before opening resume_new.md
 resume_md_path = f"generated//resume_new.md"
 ensure_file_exists(resume_md_path)
@@ -27,7 +45,7 @@ with open("user_info.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # Check if user information is already set up
-if 'user' in data:
+if user_info.get("user") == "FirstnameLastname":
     print("User info is already set up, are you sure you want to overwrite it? (yes/no)")
     overwrite = input().strip().lower() == 'yes'
 
