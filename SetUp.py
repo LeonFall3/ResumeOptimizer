@@ -45,13 +45,13 @@ with open("user_info.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # Check if user information is already set up
-if user_info.get("user") == "FirstnameLastname":
+if user_info.get("user") != "FirstnameLastname":
     print("User info is already set up, are you sure you want to overwrite it? (yes/no)")
     overwrite = input().strip().lower() == 'yes'
 
-if not overwrite:
-    print("Exiting setup. You can run ResumeOp.py to generate your resume with the existing user info.")
-    exit()
+    if overwrite =='yes':
+        print("Exiting setup. You can run ResumeOp.py to generate your resume with the existing user info.")
+        exit()
 
 user_info_file = "user_info.json"
 

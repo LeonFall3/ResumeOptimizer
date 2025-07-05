@@ -4,25 +4,30 @@ from weasyprint.text.ffi import FROM_UNITS
 
 import pdfkit
 import json
+import os
 
-with open("user_info.json", "r", encoding="utf-8") as f:
-   data = json.load(f)
-
+user_info_path = "user_info.json"
 # Path to the wkhtmltopdf executable
 path_to_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
-user = data['user']
-multiple_jobs = data['multiple_jobs']
-job_types = data['job_types']
+
 
 filename = 'generated//resume_new.md'
 mode = 'r'
 options = {'encoding': 'UTF-8' }
 
-
-if user == '':
+if not os.path.exists(user_info_path):
    print("Please run SetUp.py first to set up your user information.")
    exit()
+with open("user_info.json", "r", encoding="utf-8") as f:
+   data = json.load(f)
+
+
+user = data['user']
+multiple_jobs = data['multiple_jobs']
+job_types = data['job_types']
+
+
 
 def PDFcreator(html_content,response_list,type):
    if type == 'cover':
