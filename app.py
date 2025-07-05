@@ -94,8 +94,8 @@ class SetupWindow(QWidget):
             "multiple_jobs": multiple_jobs,
             "job_types": job_types
         }
-        with open("user_info.json", "w", encoding="utf-8") as f:
-            json.dump(user_info, f, indent=4)
+        with open("user_info.json", "w", encoding="utf-8") as user_info_json:
+            json.dump(user_info, user_info_json, indent=4)
         QMessageBox.information(self, "Saved", "User info saved successfully!")
         self.close()
 
