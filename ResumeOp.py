@@ -11,6 +11,14 @@ user_info_path = "user_info.json"
 path_to_wkhtmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
 
+import sys
+
+if len(sys.argv) >= 3:
+   job_type = sys.argv[1]
+   job_description = sys.argv[2]
+else:
+   job_type = input("Enter job type: ")
+   job_description = input("Enter job description: ")
 
 filename = 'generated//resume_new.md'
 mode = 'r'
@@ -26,6 +34,10 @@ with open("user_info.json", "r", encoding="utf-8") as f:
 user = data['user']
 multiple_jobs = data['multiple_jobs']
 job_types = data['job_types']
+cover_letter = data['cover_letter']
+
+
+
 
 
 
@@ -91,26 +103,26 @@ def RunPrompt(prompt, api_key, type):
 
    return html_content, response_list
 
-if multiple_jobs:
-   print('Select resume template')
-   print(f"Available templates: {job_types}")
-   tempSelection = input().lower()
-   for job_type in job_types:
-      if tempSelection == "gen" or tempSelection == "general":
-         tempSelection = "resume"
-         break
-      if tempSelection == job_type:
-         tempSelection = f"{job_type}_resume"
-         break
+# if multiple_jobs:
+#    print('Select resume template')
+#    print(f"Available templates: {job_types}")
+#    tempSelection = job_type.lower()
+#    for job_type in job_types:
+#       if tempSelection == "gen" or tempSelection == "general":
+#          tempSelection = "resume"
+#          break
+#       if tempSelection == job_type:
+#          tempSelection = f"{job_type}_resume"
+#          break
 
-else:
-   tempSelection = "resume"
+# else:
+#    tempSelection = "resume"
 
 # Open and read the Markdown file
-with open(f"templates//{tempSelection}.md", "r", encoding="utf-8") as file:
+with open(f"{data["resume_paths"][job_type]}", "r", encoding="utf-8") as file:
    resume_string = file.read()
-print("Enter the job description:")
-jd_string = input()  
+# print("Enter the job description:")
+jd_string = job_description
 
 
 # Resume optimization
@@ -174,61 +186,61 @@ with open(f"generated//resume_new.md", "r", encoding="utf-8") as file:
 PDFcreator(res_html_contet,res_response_list,'resume')
 print('Resume optimization completed successfully!')
 
+if cover_letter:
+   # Cover letter generation
+   print('Cover Letter optimization starting')
+   CL_prompt_template = lambda resume_string, jd_string : f"""
+   You are a professional cover letter writter expert specializing in tailoring cover letters to specific job descriptions based on a given resume. Your goal is to create my cover letter and provide actionable suggestions for improvement to align with the target role.
 
-# Cover letter generation
-print('Cover Letter optimization starting')
-CL_prompt_template = lambda resume_string, jd_string : f"""
-You are a professional cover letter writter expert specializing in tailoring cover letters to specific job descriptions based on a given resume. Your goal is to create my cover letter and provide actionable suggestions for improvement to align with the target role.
+   ### Guidelines:
+   1. Address the hiring manager professionally (use "Dear Hiring Manager" if no name is provided).
+   2. Express enthusiasm for the role and company, demonstrating an understanding of their mission and values.
+   3. Highlight relevant skills and experiences from the resume that align with the job description.
+   4. Showcase key accomplishments that demonstrate the candidate's ability to succeed in the role.
+   5. Emphasize soft skills and company culture fit (e.g., teamwork, adaptability, leadership, inclusivity).
+   6. Close with a strong call to action, inviting further discussion or an interview opportunity.
+   7. Ensure the letter only uses acturate from the resume and job description.
 
-### Guidelines:
-1. Address the hiring manager professionally (use "Dear Hiring Manager" if no name is provided).
-2. Express enthusiasm for the role and company, demonstrating an understanding of their mission and values.
-3. Highlight relevant skills and experiences from the resume that align with the job description.
-4. Showcase key accomplishments that demonstrate the candidate's ability to succeed in the role.
-5. Emphasize soft skills and company culture fit (e.g., teamwork, adaptability, leadership, inclusivity).
-6. Close with a strong call to action, inviting further discussion or an interview opportunity.
-7. Ensure the letter only uses acturate from the resume and job description.
+   Ensure the tone is professional yet engaging, and keep the letter concise (ideally within 300-400 words). Format the response as a formal cover letter.
 
-Ensure the tone is professional yet engaging, and keep the letter concise (ideally within 300-400 words). Format the response as a formal cover letter.
+   ---
 
----
+   ### Input:
+   - **My resume**:  
+   {resume_string}
 
-### Input:
-- **My resume**:  
-{resume_string}
+   - **The job description**:  
+   {jd_string}
 
-- **The job description**:  
-{jd_string}
+   - **Today's Date**:
+   {date}
 
-- **Today's Date**:
-{date}
+   ---
 
----
+   ### Output:  
+   1. **Tailored Cover Letter**:  
+      - A resume in **Markdown format** that emphasizes relevant experience, skills, and achievements.  
+      - Uses strong language and is no longer than **one page**.
+      - Address the hiring manager professionally
+      - Express enthusiasm for the role and company
+      - Highlight relevant skills and experiences from the resume
+      - Showcase key accomplishments
+      - Emphasize soft skills and company culture fit
+      - do not use horizontal lines
+      - do not write "cover letter" at the top
+      - use the name formatting for the name and contact info as the resume
 
-### Output:  
-1. **Tailored Cover Letter**:  
-   - A resume in **Markdown format** that emphasizes relevant experience, skills, and achievements.  
-   - Uses strong language and is no longer than **one page**.
-   - Address the hiring manager professionally
-   - Express enthusiasm for the role and company
-   - Highlight relevant skills and experiences from the resume
-   - Showcase key accomplishments
-   - Emphasize soft skills and company culture fit
-   - do not use horizontal lines
-   - do not write "cover letter" at the top
-   - use the name formatting for the name and contact info as the resume
-
-2. **Additional Suggestions** *(if applicable)*:  
-   - List **skills** that could strengthen alignment with the role.  
-   - Recommend **certifications or courses** to pursue.  
-   - Suggest **specific projects or experiences** to develop.
-"""
-CL_prompt = CL_prompt_template(resume_string, jd_string)
-cl_html_contet, cl_response_list = RunPrompt(CL_prompt, api_key, 'cover')
-print("Cover Letter prompt ran")
-with open(f"generated//coverletter_new.md", "r", encoding="utf-8") as file:
-   resume_string = file.read()
-# print(f"Cover Letter string: {resume_string}")
-PDFcreator(cl_html_contet,cl_response_list,'cover')
-print("Cover Letter creation completed successfully!")
+   2. **Additional Suggestions** *(if applicable)*:  
+      - List **skills** that could strengthen alignment with the role.  
+      - Recommend **certifications or courses** to pursue.  
+      - Suggest **specific projects or experiences** to develop.
+   """
+   CL_prompt = CL_prompt_template(resume_string, jd_string)
+   cl_html_contet, cl_response_list = RunPrompt(CL_prompt, api_key, 'cover')
+   print("Cover Letter prompt ran")
+   with open(f"generated//coverletter_new.md", "r", encoding="utf-8") as file:
+      resume_string = file.read()
+   # print(f"Cover Letter string: {resume_string}")
+   PDFcreator(cl_html_contet,cl_response_list,'cover')
+   print("Cover Letter creation completed successfully!")
 

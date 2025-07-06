@@ -18,6 +18,8 @@ from PyQt6.QtWidgets import (
 import sys
 import json
 import subprocess
+import os
+from PyQt6.QtWidgets import QComboBox
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -30,7 +32,6 @@ class MainWindow(QMainWindow):
         main_widget = QWidget()
         main_layout = QVBoxLayout()
 
-        
         #toolbar
         toolbar = QToolBar("Main Toolbar")
         self.addToolBar(toolbar)
@@ -49,11 +50,65 @@ class MainWindow(QMainWindow):
 
         self.setStatusBar(QStatusBar(self))  # Set a status bar for the main window
 
+        # Job description input
+        self.job_description_input = QLineEdit()
+        self.job_description_input.setPlaceholderText("Paste job description here")
+        main_layout.addWidget(QLabel("Job Description:"))
+        main_layout.addWidget(self.job_description_input)
+
+        # Dropdown for job type selection if multiple_jobs is enabled
+
+        self.job_type_dropdown = None
+        try:
+            if os.path.exists("user_info.json"):
+                with open("user_info.json", "r", encoding="utf-8") as f:
+                    user_info = json.load(f)
+                if user_info.get("multiple_jobs") is True:
+                    job_types = user_info.get("job_types", [])
+                    if job_types:
+                        self.job_type_dropdown = QComboBox()
+                        self.job_type_dropdown.addItems([jt.capitalize() for jt in job_types])
+                        main_layout.addWidget(QLabel("Select Job Type:"))
+                        main_layout.addWidget(self.job_type_dropdown)
+        except Exception as e:
+            print(f"Error loading job types: {e}")
+
+        # Button to run resumeop.py
+        run_resumeop_button = QPushButton("Run Resume Optimizer")
+        run_resumeop_button.clicked.connect(self.run_resumeop)
+        main_layout.addWidget(run_resumeop_button)
+
+        main_widget.setLayout(main_layout)
+        self.setCentralWidget(main_widget)
+
+    import shlex
+
+    def run_resumeop(self):
+        # ...existing checks...
+        job_description = self.job_description_input.text()
+        if not job_description.strip():
+            QMessageBox.warning(self, "Error", "Please enter a job description.")
+            return
+
+        # Get job type if dropdown exists
+        job_type = ""
+        if self.job_type_dropdown:
+            job_type = self.job_type_dropdown.currentText().lower()
+        else:
+            job_type = "general"
+
+        # Pass both as arguments (quote job_description for spaces)
+        print(f"Running resumeop.py with job_type: {job_type} and job_description: {job_description}")
+        args = [sys.executable, "resumeop.py", job_type, job_description]
+        subprocess.Popen(args)
+
+
 
     def on_setup_button_click(self):
         print("Setup clicked!")
         self.setup_window = SetupWindow()
         self.setup_window.show()
+
 
     def on_documents_button_click(self):
         print("Update Documents clicked!")
@@ -134,18 +189,19 @@ class SetupWindow(QWidget):
             "user": user,
             "cover_letter": cover_letter,
             "multiple_jobs": multiple_jobs,
-            "job_types": job_types
+            "job_types": job_types,
+            "cover_letter_path": "",
+            'resume_paths': {}
         }
+        for job_type in job_types:
+            user_info['resume_paths'][job_type] = ""
         with open("user_info.json", "w", encoding="utf-8") as user_info_json:
             json.dump(user_info, user_info_json, indent=4)
         QMessageBox.information(self, "Saved", "User info saved successfully!")
         self.close()
 
 class UpdateDocumentsWindow(QWidget):
-    def __init__(self):
-        
-
-        
+    def __init__(self):      
         super().__init__()
         self.setWindowTitle("Update Documents")
         self.setFixedSize(QSize(350, 250))
@@ -154,10 +210,10 @@ class UpdateDocumentsWindow(QWidget):
         layout = QVBoxLayout()
         
         # check if user wants to optimize cover letter
-        if user_info.get("cover_letter") is True:
-            cover_letter_upload_button = QPushButton("Upload Cover Letter")
-            cover_letter_upload_button.clicked.connect(self.upload_documents)
-            layout.addWidget(cover_letter_upload_button)
+        # if user_info.get("cover_letter") is True:
+        #     cover_letter_upload_button = QPushButton("Upload Cover Letter")
+        #     cover_letter_upload_button.clicked.connect(self.upload_cover_letter)
+        #     layout.addWidget(cover_letter_upload_button)
 
         self.setLayout(layout)
 
@@ -173,16 +229,33 @@ class UpdateDocumentsWindow(QWidget):
             print("Multiple jobs is not enabled.")
 
 
-    def upload_documents(self):
-        resume_path, _ = QFileDialog.getOpenFileName(self, "Select Resume File", "", "PDF Files (*.pdf);;All Files (*)")
-        cover_letter_path, _ = QFileDialog.getOpenFileName(self, "Select Cover Letter File", "", "Markdown Files (*.md);;PDF Files (*.pdf);;All Files (*)")
+    # def upload_cover_letter(self):
+    #     # Only for cover letter upload (since this is called for cover letter button)
+    #     cover_letter_path, _ = QFileDialog.getOpenFileName(
+    #         self, "Select Cover Letter File", "", "Markdown Files (*.md);;PDF Files (*.pdf);;All Files (*)"
+    #     )
+    #     if cover_letter_path:
+    #         self.cover_letter_file_path = cover_letter_path
+    #         with open("user_info.json", "r", encoding="utf-8") as f:
+    #             user_info = json.load(f)
+    #         user_info["cover_letter_path"] = cover_letter_path
+    #         with open("user_info.json", "w", encoding="utf-8") as f:
+    #             json.dump(user_info, f, indent=4)
+    #         print(f"Selected cover letter file: {cover_letter_path}")
 
+    def upload_job_resume(self, job_type):
+        resume_path, _ = QFileDialog.getOpenFileName(
+            self, f"Select Resume File for {job_type.capitalize()}", "", "PDF Files (*.pdf);;All Files (*)"
+        )
         if resume_path:
-            # self.resume_file_input.setText(resume_path)
-            print(f"Selected resume file: {resume_path}")
-        if cover_letter_path:
-            print(f"Selected cover letter file: {cover_letter_path}")
-            # self.cover_letter_file_input.setText(cover_letter_path)
+            # Save the path to an attribute named after the job type
+            setattr(self, f"resume_file_path_{job_type.lower()}", resume_path)
+            with open("user_info.json", "r", encoding="utf-8") as f:
+                user_info = json.load(f)
+            user_info["resume_paths"][f"{job_type}"] = resume_path
+            with open("user_info.json", "w", encoding="utf-8") as f:
+                json.dump(user_info, f, indent=4)
+            print(f"Selected resume file for {job_type}: {resume_path}")
         
 
 
