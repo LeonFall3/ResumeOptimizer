@@ -245,7 +245,7 @@ class UpdateDocumentsWindow(QWidget):
 
     def upload_job_resume(self, job_type):
         resume_path, _ = QFileDialog.getOpenFileName(
-            self, f"Select Resume File for {job_type.capitalize()}", "", "PDF Files (*.pdf);;All Files (*)"
+            self, f"Select Resume File for {job_type.capitalize()}", "", "Markdown Files (*.md);;PDF Files (*.pdf);;All Files (*)"
         )
         if resume_path:
             # Save the path to an attribute named after the job type
